@@ -1,7 +1,7 @@
 class String
   define_method(:scrabble) do
-    score_table = Hash.new()
 
+    score_table = Hash.new()
     one_point_letters = ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"]
     two_point_letters = ["D", "G"]
     three_point_letters = ["B", "C", "M", "P"]
@@ -18,6 +18,12 @@ class String
       end
     end
 
-    score_table.fetch(self.upcase())
+    score = 0
+    word = self.split("")
+    word.each() do |letter|
+      score = score.+(score_table.fetch(letter.upcase()))
+    end
+
+    score
   end
 end
